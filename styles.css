@@ -610,6 +610,9 @@ a { color: var(--rose-d); }
 .map-frame[data-focus="work"] .room-spot[data-room="work"],
 .map-frame[data-focus="lounge"] .room-spot[data-room="lounge"] { display: block; }
 .map-frame[data-focus] .pickle { width: 38px; }
+.map-frame[data-focus="work"] .pickle { width: 30px; }
+.map-frame[data-focus="lounge"] .pickle { width: 32px; }
+.map-frame[data-focus] .pickle.is-me::before { width: 15px; height: 15px; bottom: 1px; }
 /* 방 화면은 확대되어 있어서, 안쪽 글자는 그만큼 작게 잡아요 */
 .map-frame[data-focus] .pickle .bubble {
   max-width: 58px;
