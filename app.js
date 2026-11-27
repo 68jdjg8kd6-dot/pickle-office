@@ -201,7 +201,7 @@
     const pickles = {
       s2: { id: 's2', name: '2호', consonant: 'ㄱ', color: 'mint', room: 'meeting', pos: { x: 22, y: 66 }, status: '회의 자료 정리 중 📊', sample: true, updatedAt: now - 60000 },
       s3: { id: 's3', name: '3호', consonant: 'ㅁ', color: 'peach', room: 'lounge', pos: { x: 24, y: 72 }, status: '커피 한 잔 하고 왔어요 ☕', sample: true, updatedAt: now - 90000 },
-      s5: { id: 's5', name: '5호', consonant: 'ㅅ', color: 'butter', room: 'work', pos: { x: 72, y: 74 }, status: '이메일 답장 쓰는 중 ✉️', sample: true, updatedAt: now - 120000 },
+      s5: { id: 's5', name: '5호', consonant: 'ㅅ', color: 'butter', room: 'work', pos: { x: 72, y: 58 }, status: '이메일 답장 쓰는 중 ✉️', sample: true, updatedAt: now - 120000 },
     };
     const messages = [
       { id: 'm1', authorId: 's2', authorName: '2호', authorColor: 'mint', authorConsonant: 'ㄱ', text: '다들 좋은 하루 보내고 있죠? 오늘 회의는 3시에 어때요?', ts: now - 1000 * 60 * 52 },
