@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>피클 합동 비서실 🥒</title>
+<meta name="description" content="피클들이 함께 쓰는 아기자기한 합동 비서실. 오피스 맵에서 만나고, 화이트보드에 메모하고, 실시간으로 이야기해요." />
+<meta name="theme-color" content="#FFF9F0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="피클 비서실" />
+<meta property="og:title" content="피클 합동 비서실 🥒" />
+<meta property="og:description" content="피클들이 함께 쓰는 아기자기한 합동 비서실" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A5%92%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Gowun+Dodum&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<div class="bg" aria-hidden="true">
+  <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
+  <span class="grain"></span>
+</div>
+
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark" aria-hidden="true">🥒</div>
+      <div class="brand-text">
+        <h1>피클 합동 비서실</h1>
+        <p id="greeting">좋은 하루예요. 오늘도 다정하게 함께 일해요 🌿</p>
+      </div>
+    </div>
+    <div class="top-actions">
+      <button class="conn-pill" id="connPill" type="button" data-mode="local" title="실시간 연결 설정">
+        <i></i><b>로컬 데모</b>
+      </button>
+      <button class="icon-btn" id="btnAI" type="button" aria-label="챗지피티 연결" title="챗지피티 연결 (API 키)">🤖</button>
+      <button class="icon-btn" id="btnSettings" type="button" aria-label="설정" title="설정">⚙️</button>
+      <button class="me-chip" id="btnMe" type="button" aria-label="내 피클 꾸미기">
+        <span class="me-avatar" id="meAvatar"></span>
+        <span class="me-text"><b id="meName">1호</b><em id="meStatus">상태를 남겨보세요</em></span>
+        <span class="me-edit" aria-hidden="true">✎</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="office" aria-label="오피스 맵">
+      <div class="office-head">
+        <div class="office-title">
+          <h2>오피스 맵</h2>
+          <p class="hint">방을 누르면 내 피클이 이동해요 · 내 피클은 끌어서 옮길 수 있어요</p>
+        </div>
+        <div class="status-row">
+          <label for="statusInput">내 상태</label>
+          <div class="status-input-wrap">
+            <input id="statusInput" type="text" maxlength="40" autocomplete="off" placeholder="예: 보고서 쓰는 중 🎧" />
+            <button class="status-save" id="statusSave" type="button">남기기</button>
+          </div>
+          <div class="quick-status" id="quickStatus" aria-label="빠른 상태"></div>
+        </div>
+      </div>
+
+      <div class="map" id="map">
+        <!-- 작업실 -->
+        <div class="room room--work" data-room="work" role="button" tabindex="0" aria-label="작업실로 이동">
+          <div class="wall">
+            <div class="win" style="left:13%;top:34%;width:33%;height:46%">
+              <i class="sun"></i><i class="cloud c1"></i><i class="cloud c2"></i>
+            </div>
+            <div class="frame" style="right:31%;top:32%">🌿</div>
+            <div class="wall-clock" style="right:13%;top:30%"><i></i></div>
+            <div class="shelf" style="right:7%;top:58%"><i>📚</i><i>🪴</i></div>
+          </div>
+          <div class="floor">
+            <div class="desk" style="left:2%;top:0%"><i class="mon"></i><i class="keys"></i><i class="mug">☕</i></div>
+            <div class="desk" style="left:35%;top:0%"><i class="mon"></i><i class="keys"></i><i class="mug">🍵</i></div>
+            <div class="desk" style="left:68%;top:0%"><i class="mon"></i><i class="keys"></i><i class="mug">🪴</i></div>
+            <div class="rug" style="left:26%;bottom:-6%;width:48%"></div>
+          </div>
+          <div class="room-tag"><span>💻</span><b>작업실</b><em>조용히 집중</em></div>
+          <div class="room-count" data-count>0</div>
+          <div class="pickle-layer" data-layer="work"></div>
+        </div>
+
+        <!-- 회의실 -->
+        <div class="room room--meeting" data-room="meeting" role="button" tabindex="0" aria-label="회의실로 이동">
+          <div class="wall">
+            <div class="board" style="left:10%;top:26%;width:48%;height:52%">
+              <span class="board-title">오늘의 안건</span>
+              <i class="ln l1"></i><i class="ln l2"></i><i class="ln l3"></i>
+            </div>
+            <div class="wall-clock" style="right:16%;top:28%"><i></i></div>
+            <div class="frame" style="right:34%;top:50%">🖼️</div>
+            <div class="shelf" style="right:6%;top:56%"><i>📎</i><i>🖍️</i></div>
+          </div>
+          <div class="floor">
+            <div class="chair" style="left:22%;top:22%"></div>
+            <div class="chair" style="left:48%;top:18%"></div>
+            <div class="chair" style="left:40%;top:62%"></div>
+            <div class="table" style="left:28%;top:32%;width:44%"><i class="cup">☕</i></div>
+            <div class="plant" style="right:2%;top:6%"></div>
+            <div class="rug" style="left:14%;bottom:-8%;width:72%"></div>
+          </div>
+          <div class="room-tag"><span>🗣️</span><b>회의실</b><em>머리 맞대기</em></div>
+          <div class="room-count" data-count>0</div>
+          <div class="pickle-layer" data-layer="meeting"></div>
+        </div>
+
+        <!-- 카페 -->
+        <div class="room room--lounge" data-room="lounge" role="button" tabindex="0" aria-label="카페로 이동">
+          <div class="wall">
+            <div class="menu" style="left:12%;top:28%"><b>오늘의 메뉴</b><span>라떼 ☕</span><span>쿠키 🍪</span></div>
+            <div class="frame sm" style="right:36%;top:32%">🌼</div>
+            <div class="frame sm" style="right:22%;top:40%">🍋</div>
+            <div class="lamp" style="right:8%;top:20%"></div>
+          </div>
+          <div class="floor">
+            <div class="sofa" style="left:3%;top:14%;width:40%"></div>
+            <div class="side-table" style="left:46%;top:30%"><i>🍪</i></div>
+            <div class="coffee" style="right:6%;top:4%"><i>☕</i></div>
+            <div class="plant" style="right:32%;top:44%"></div>
+            <div class="rug" style="left:16%;bottom:-10%;width:66%"></div>
+          </div>
+          <div class="room-tag"><span>☕</span><b>카페</b><em>잠깐 쉬어가기</em></div>
+          <div class="room-count" data-count>0</div>
+          <div class="pickle-layer" data-layer="lounge"></div>
+        </div>
+      </div>
+
+      <div class="stats" id="stats"></div>
+    </section>
+
+    <aside class="panel" aria-label="함께 쓰는 공간">
+      <div class="tabs" role="tablist">
+        <button class="tab is-active" data-tab="chat" role="tab" aria-selected="true">💬 대화 <span class="count" id="chatCount">0</span></button>
+        <button class="tab" data-tab="board" role="tab" aria-selected="false">📌 화이트보드</button>
+        <button class="tab" data-tab="people" role="tab" aria-selected="false">👥 피클</button>
+      </div>
+
+      <div class="panel-body">
+        <section class="pane is-active" data-pane="chat">
+          <div class="messages" id="messages" aria-live="polite"></div>
+          <form class="composer" id="chatForm" autocomplete="off">
+            <button class="ai-toggle" id="aiToggle" type="button" aria-pressed="false" title="챗지피티에게도 물어보기">🤖</button>
+            <input id="chatInput" type="text" maxlength="200" placeholder="다정한 한마디를 남겨보세요" />
+            <button class="send" type="submit" aria-label="보내기">↑</button>
+          </form>
+        </section>
+
+        <section class="pane" data-pane="board">
+          <form class="note-form" id="noteForm">
+            <div class="note-types" id="noteTypes">
+              <button type="button" class="chip is-on" data-kind="memo">메모</button>
+              <button type="button" class="chip" data-kind="todo">할 일</button>
+            </div>
+            <textarea id="noteInput" rows="2" maxlength="140" placeholder="화이트보드에 남길 메모나 할 일을 적어보세요"></textarea>
+            <p class="note-hint">💡 <b>@챗지피티</b> 라고 부르면 AI 동료가 답을 남겨요</p>
+            <button class="btn primary" type="submit">붙이기</button>
+          </form>
+          <div class="notes" id="notes"></div>
+        </section>
+
+        <section class="pane" data-pane="people">
+          <div class="people-list" id="peopleList"></div>
+          <div class="people-foot">
+            <button class="btn soft full" id="btnJoin" type="button">＋ 새 피클로 참여하기</button>
+            <button class="btn ghost full" id="btnInvite" type="button">🔗 초대 링크 복사</button>
+          </div>
+        </section>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="foot">
+    <span id="footNote">지금은 이 브라우저에만 저장되는 데모 모드예요.</span>
+    <span class="dot">·</span>
+    <span>만든 곳: 피클 합동 비서실</span>
+  </footer>
+</div>
+
+<!-- 내 피클 / 새 피클 -->
+<div class="modal-backdrop" id="modalMe" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="meTitle">
+    <button class="modal-x" type="button" data-close aria-label="닫기">×</button>
+    <h2 id="meTitle">내 피클 꾸미기</h2>
+    <p class="modal-sub" id="meSub">이름과 자음, 색을 바꾸면 오피스에 바로 반영돼요.</p>
+    <div class="me-preview" id="mePreview"></div>
+    <label class="field"><span>이름</span><input id="meNameInput" type="text" maxlength="12" placeholder="1호" /></label>
+    <div class="field"><span>자음</span><div class="consonant-grid" id="consonantGrid"></div></div>
+    <div class="field"><span>색</span><div class="color-grid" id="colorGrid"></div></div>
+    <label class="field"><span>상태 메시지</span><input id="meStatusInput" type="text" maxlength="40" placeholder="예: 조용히 집중 중 🎧" /></label>
+    <div class="modal-actions">
+      <button class="btn ghost" type="button" data-close>취소</button>
+      <button class="btn primary" type="button" id="meSave">저장하기</button>
+    </div>
+  </div>
+</div>
+
+<!-- 다른 피클 카드 -->
+<div class="modal-backdrop" id="modalCard" hidden>
+  <div class="modal card-modal" role="dialog" aria-modal="true" aria-labelledby="cardTitle">
+    <button class="modal-x" type="button" data-close aria-label="닫기">×</button>
+    <div class="card-hero" id="cardHero"></div>
+    <h2 id="cardTitle">피클</h2>
+    <p class="card-status" id="cardStatus"></p>
+    <p class="card-room" id="cardRoom"></p>
+    <div class="modal-actions">
+      <button class="btn ghost" type="button" id="cardMove">이 방으로 이동</button>
+      <button class="btn primary" type="button" id="cardHi">👋 인사하기</button>
+    </div>
+  </div>
+</div>
+
+<!-- 설정 -->
+<div class="modal-backdrop" id="modalSettings" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="setTitle">
+    <button class="modal-x" type="button" data-close aria-label="닫기">×</button>
+    <h2 id="setTitle">실시간 DB 연결</h2>
+    <p class="modal-sub">무료 Firebase Realtime Database를 연결하면 모든 기기에서 피클들이 실시간으로 함께 써요.</p>
+    <div class="set-mode" id="setMode"></div>
+    <label class="field"><span>Firebase 설정 (JSON)</span>
+      <textarea id="cfgInput" rows="7" spellcheck="false" placeholder='{"apiKey":"...","databaseURL":"https://xxxx-default-rtdb.firebaseio.com","projectId":"..."}'></textarea>
+    </label>
+    <div class="hint-box">
+      <b>이렇게 준비해요</b>
+      <ol>
+        <li>console.firebase.google.com 에서 새 프로젝트를 만들어요.</li>
+        <li>빌드 → Realtime Database → 데이터베이스 만들기를 눌러요. (위치는 가까운 곳)</li>
+        <li>규칙을 아래처럼 바꿔요. 테스트용으로 열어두는 설정이에요.</li>
+      </ol>
+      <pre id="rulesPre">{
+  "rules": {
+    ".read": true,
+    ".write": true
+  }
+}</pre>
+      <button class="btn tiny" type="button" id="copyRules">규칙 복사</button>
+      <p class="fine">프로젝트 설정 → 내 앱 → SDK 설정의 <code>firebaseConfig</code> 값을 위 칸에 그대로 붙여넣으면 끝이에요. 웹 앱의 apiKey는 공개되어도 되는 값이지만, 위 규칙은 누구나 쓸 수 있는 설정이라 개인정보는 올리지 마세요.</p>
+    </div>
+    <p class="set-msg" id="setMsg" role="status"></p>
+    <div class="modal-actions">
+      <button class="btn ghost" type="button" id="btnLocalMode">로컬 모드로</button>
+      <button class="btn primary" type="button" id="btnConnect">연결 &amp; 저장</button>
+    </div>
+  </div>
+</div>
+
+<!-- 챗지피티 API 키 -->
+<div class="modal-backdrop" id="modalAI" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="aiTitle">
+    <button class="modal-x" type="button" data-close aria-label="닫기">×</button>
+    <h2 id="aiTitle">🤖 챗지피티 연결</h2>
+    <p class="modal-sub">내 OpenAI API 키를 넣으면 비서실의 AI 동료 <b>챗지피티</b>가 대답해요.</p>
+    <div class="key-status" id="keyStatus"></div>
+    <label class="field"><span>OpenAI API 키</span>
+      <span class="key-input-wrap">
+        <input id="keyInput" type="password" autocomplete="off" spellcheck="false" placeholder="sk-..." />
+        <button type="button" class="key-eye" id="keyToggle">보기</button>
+      </span>
+    </label>
+    <label class="field"><span>모델</span>
+      <select id="modelSelect">
+        <option value="gpt-4o-mini">gpt-4o-mini · 기본 (가볍고 저렴해요)</option>
+        <option value="gpt-4.1-mini">gpt-4.1-mini</option>
+        <option value="gpt-4o">gpt-4o</option>
+        <option value="gpt-4.1">gpt-4.1</option>
+      </select>
+    </label>
+    <div class="hint-box">
+      <b>키는 이 브라우저에만 저장돼요</b>
+      <ul class="safe-list">
+        <li>키는 <code>localStorage</code>에만 있고, <b>GitHub · Firebase로는 절대 전송되지 않아요.</b></li>
+        <li>대화를 요청할 때만 <code>api.openai.com</code>으로 키가 전달돼요.</li>
+        <li>이 브라우저를 쓰는 사람은 키를 쓸 수 있으니, 공용 기기에서는 지워주세요.</li>
+      </ul>
+      <p class="fine">키는 platform.openai.com → API keys 에서 만들 수 있어요. 채팅에서 <code>@챗지피티</code> 라고 부르거나, 입력창의 🤖 버튼을 켜두면 대답해요.</p>
+    </div>
+    <p class="set-msg" id="setAIMsg" role="status"></p>
+    <div class="modal-actions">
+      <button class="btn ghost" type="button" id="btnClearKey">키 지우기</button>
+      <button class="btn ghost" type="button" id="btnTestKey">연결 테스트</button>
+      <button class="btn primary" type="button" id="btnSaveKey">저장</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast-stack" id="toastStack" aria-live="polite"></div>
+
+<!-- Firebase (Realtime Database) — 연결하지 않으면 로드되지 않아도 괜찮아요 -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js" defer></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js" defer></script>
+<script src="firebase-config.js" defer></script>
+<script src="app.js" defer></script>
+</body>
+</html>
