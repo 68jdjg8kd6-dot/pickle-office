@@ -849,7 +849,9 @@
       thinking = false;
       const msg = err && err.message ? err.message : '알 수 없는 오류';
       setBotStatus('대답을 못 했어요 🥲');
-      postBotMessage(`앗, 지금은 대답하기 어려워요. (${msg})`);
+      renderMessages();
+      renderPeople();
+      toast('챗지피티가 대답하지 못했어요: ' + msg);
       return;
     }
     thinking = false;
