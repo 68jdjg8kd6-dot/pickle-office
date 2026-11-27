@@ -408,6 +408,8 @@ a { color: var(--rose-d); }
 
 /* 공간마다 피클이 서는 자리 */
 .room-spot { position: absolute; pointer-events: none; }
+/* 지도 전체 화면에서는 그림이 주인공 — 클레이 피클은 방에 들어가면 보여요 */
+.map-frame:not([data-focus]) .room-spot { display: none; }
 .room-spot[data-room="meeting"] { left: 6.5%; top: 37%; width: 27.5%; height: 48%; }
 .room-spot[data-room="work"] { left: 33.8%; top: 24%; width: 26%; height: 37%; }
 .room-spot[data-room="lounge"] { left: 62%; top: 48%; width: 32%; height: 36%; }
@@ -533,6 +535,7 @@ a { color: var(--rose-d); }
   bottom: calc(100% + 2px);
   left: 50%;
   transform: translateX(-50%) translateY(3px);
+  width: max-content;
   max-width: 132px;
   padding: 5px 9px;
   border-radius: 11px;
@@ -601,7 +604,7 @@ a { color: var(--rose-d); }
   0%, 92%, 100% { transform: scaleY(1); }
   95% { transform: scaleY(.12); }
 }
-.map-frame[data-focus] .pickle { width: 30px; }
+.map-frame[data-focus] .pickle { width: 34px; }
 
 /* ── 통계 ──────────────────────────────────────────────── */
 .stats {
@@ -1056,7 +1059,10 @@ body[data-ai="openai"] .typing-dots i { background: #9CC7B4; }
   padding: 16px 12px 10px;
   border-radius: 16px;
   background: var(--note, #FBF3D9);
-  border: 1px solid rgba(255, 255, 255, .7);
+  background: linear-gradient(165deg,
+    color-mix(in srgb, var(--note-c, #EAD9A8) 30%, #FFFDF9) 0%,
+    color-mix(in srgb, var(--note-c, #EAD9A8) 15%, #FFFDF9) 100%);
+  border: 1px solid color-mix(in srgb, var(--note-c, #EAD9A8) 22%, #FFFFFF);
   box-shadow: 0 12px 20px -18px rgba(120, 90, 60, .9);
   transition: transform .15s ease;
 }
@@ -1247,8 +1253,9 @@ body[data-ai="openai"] .typing-dots i { background: #9CC7B4; }
   line-height: 1.6;
   color: var(--ink-2);
 }
-.hint-box b { display: block; font-size: 11px; font-weight: 800; color: var(--ink); margin-bottom: 3px; }
-.hint-box b + ol, .hint-box b + ul { margin-top: 2px; }
+.hint-box > b { display: block; font-size: 11px; font-weight: 800; color: var(--ink); margin-bottom: 3px; }
+.hint-box b { font-weight: 800; color: var(--ink); }
+.hint-box > b + ol, .hint-box > b + ul { margin-top: 2px; }
 .hint-box ol, .hint-box ul { margin: 4px 0 8px; padding-left: 16px; }
 .hint-box li { margin: 2px 0; }
 .hint-box code, .fine code {

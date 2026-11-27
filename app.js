@@ -643,6 +643,7 @@
     const card = document.createElement('div');
     card.className = 'note' + (n.done ? ' done' : '');
     card.style.setProperty('--note', c.soft);
+    card.style.setProperty('--note-c', c.main);
 
     const pin = document.createElement('span');
     pin.className = 'pin';
@@ -1682,7 +1683,7 @@
       const mine = state.pickles[me.id];
       const here = !!mine && mine.room === currentRoom;
       btn.textContent = here ? '✅ 지금 이 방에 있어요' : '🚪 여기로 내 피클 부르기';
-      btn.disabled = here;
+      btn.hidden = here;
     }
   }
 
