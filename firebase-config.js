@@ -8,7 +8,7 @@
      다만 아래 databaseURL의 Realtime Database 규칙이 열려 있으면
      누구나 읽고 쓸 수 있으니, 개인정보는 올리지 마세요.
    * OpenAI API 키는 절대 여기에 넣지 마세요.
-     OpenAI 키는 브라우저(localStorage)에만 저장되고
+     AI 키(Gemini · OpenAI)는 브라우저(localStorage)에만 저장되고
      GitHub / Firebase로는 전송되지 않아요. (앱의 🤖 설정 화면에서 입력)
    * 비워두면 앱은 로컬 데모 모드(localStorage)로 동작해요.
      나중에 앱 안의 ⚙️ 설정 화면에서 붙여넣어도 됩니다.
