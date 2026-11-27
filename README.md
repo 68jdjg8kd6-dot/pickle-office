@@ -80,8 +80,18 @@
 
 ## 배포
 
-GitHub Pages(main 브랜치 루트)로 자동 배포돼요.
-`index.html` 등을 고쳐서 `main` 에 push 하면 1분 안에 반영돼요.
+이 저장소의 사이트는 GitHub Pages의 **`gh-pages` 브랜치**에서 제공돼요.
+`main`에서 고친 뒤에는 `gh-pages`도 함께 갱신해 주세요.
+
+```bash
+git push origin main
+git push origin main:gh-pages
+```
+
+> GitHub 저장소 **Settings → Pages → Source**에서 `main` / `/ (root)`로 바꾸면 main만 push해도 되지만,
+> 이 저장소의 연결 권한에는 Pages 설정 변경 권한이 없어 gh-pages 방식으로 배포했어요.
+
+정적 파일은 `?v=` 쿼리로 캐시를 갱신해요. `styles.css`나 `app.js`를 고치면 `index.html`의 `?v=` 숫자를 올려 주세요.
 
 ## 만든 사람
 

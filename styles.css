@@ -136,7 +136,7 @@ p { margin: 0; }
 
 /* ---------- 레이아웃 ---------- */
 .layout {
-  --h: clamp(520px, 66vh, 640px);
+  --h: clamp(480px, 60vh, 600px);
   display: grid;
   grid-template-columns: minmax(0, 1fr) 366px;
   gap: 16px;
@@ -365,16 +365,16 @@ p { margin: 0; }
 /* 가구 */
 .desk { position: absolute; width: 30%; max-width: 148px; height: 32%; min-height: 40px; }
 .desk::before {
-  content: ''; position: absolute; left: 0; right: 0; bottom: 8px; height: 11px;
+  content: ''; position: absolute; left: 0; right: 0; bottom: 10px; height: 13px;
   border-radius: 5px;
-  background: linear-gradient(#F2D8B6, #DEBB8E);
-  box-shadow: 0 4px 0 -1px rgba(160, 120, 80, .16), 0 6px 12px -8px rgba(110, 80, 55, .9);
+  background: linear-gradient(#F4DCBD, #DBB689);
+  box-shadow: 0 4px 0 -1px rgba(160, 120, 80, .18), 0 7px 13px -9px rgba(110, 80, 55, .95);
 }
 .desk::after {
-  content: ''; position: absolute; left: 9%; right: 9%; bottom: 0; height: 8px;
-  background: linear-gradient(90deg, #D9B68B 0 4px, transparent 4px calc(100% - 4px), #D9B68B calc(100% - 4px));
-  border-radius: 0 0 2px 2px;
-  opacity: .55;
+  content: ''; position: absolute; left: 10%; right: 10%; bottom: 0; height: 10px;
+  background: linear-gradient(90deg, #D2AC7E 0 5px, transparent 5px calc(100% - 5px), #D2AC7E calc(100% - 5px));
+  border-radius: 0 0 3px 3px;
+  opacity: .8;
 }
 .desk .mon {
   position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%);
