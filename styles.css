@@ -462,7 +462,7 @@ p { margin: 0; }
 .room-count::after { content: '명'; margin-left: 3px; font-size: 9px; }
 
 /* ---------- 피클 캐릭터 ---------- */
-.pickle-layer { position: absolute; inset: 0; z-index: 5; }
+.pickle-layer { position: absolute; left: 0; right: 0; top: 54%; bottom: 0; z-index: 5; }
 
 .pickle {
   position: absolute;
