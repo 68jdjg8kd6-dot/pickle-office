@@ -19,14 +19,14 @@
 
   /* ---------------- 팔레트 ---------------- */
   const COLORS = {
-    lilac: { main: '#C5B0EA', soft: '#EFE7FA', deep: '#8E6FC4', name: '라일락' },
-    mint: { main: '#A9DFC7', soft: '#E8F7EF', deep: '#6FB494', name: '민트' },
-    peach: { main: '#FBC3AC', soft: '#FDEDE5', deep: '#DE8E6C', name: '복숭아' },
-    butter: { main: '#F7DE9A', soft: '#FBF3D9', deep: '#D5B45B', name: '버터' },
-    sky: { main: '#AFD3F0', soft: '#E7F2FB', deep: '#719FCB', name: '하늘' },
-    rose: { main: '#F5B9C9', soft: '#FCE9EE', deep: '#D9849A', name: '로즈' },
-    sage: { main: '#C7DCA4', soft: '#EFF4E1', deep: '#9AAE6F', name: '세이지' },
-    cocoa: { main: '#D8BEA4', soft: '#F5EBE0', deep: '#AE8E6F', name: '코코아' },
+    lilac: { main: '#BFA6E6', soft: '#EFE7FA', deep: '#8A66C0', name: '라일락' },
+    mint: { main: '#9FDCBF', soft: '#E8F7EF', deep: '#64B292', name: '민트' },
+    peach: { main: '#F9B99C', soft: '#FDEDE5', deep: '#DD8560', name: '복숭아' },
+    butter: { main: '#F5D98B', soft: '#FBF3D9', deep: '#D3AE4E', name: '버터' },
+    sky: { main: '#A3CBEC', soft: '#E7F2FB', deep: '#6A9BC9', name: '하늘' },
+    rose: { main: '#F2AEC1', soft: '#FCE9EE', deep: '#D68198', name: '로즈' },
+    sage: { main: '#BFD48F', soft: '#EFF4E1', deep: '#93A85F', name: '세이지' },
+    cocoa: { main: '#D0B092', soft: '#F5EBE0', deep: '#A58066', name: '코코아' },
   };
   const COLOR_IDS = ['lilac', 'mint', 'peach', 'butter', 'sky', 'rose', 'sage', 'cocoa'];
 
@@ -42,16 +42,16 @@
   /* 방마다 피클이 서는 자리 (바닥 기준 %, 아래에서 위로) */
   const SLOTS = {
     work: [
-      { x: 16, y: 70 }, { x: 38, y: 62 }, { x: 60, y: 72 },
-      { x: 82, y: 62 }, { x: 27, y: 92 }, { x: 52, y: 90 }, { x: 74, y: 94 },
+      { x: 14, y: 76 }, { x: 37, y: 68 }, { x: 62, y: 76 },
+      { x: 86, y: 68 }, { x: 25, y: 94 }, { x: 50, y: 92 }, { x: 75, y: 95 },
     ],
     meeting: [
-      { x: 18, y: 64 }, { x: 44, y: 56 }, { x: 78, y: 62 },
-      { x: 30, y: 92 }, { x: 62, y: 92 }, { x: 88, y: 86 },
+      { x: 20, y: 66 }, { x: 46, y: 58 }, { x: 78, y: 66 },
+      { x: 30, y: 94 }, { x: 60, y: 94 }, { x: 88, y: 88 },
     ],
     lounge: [
-      { x: 18, y: 62 }, { x: 44, y: 70 }, { x: 64, y: 60 },
-      { x: 84, y: 68 }, { x: 34, y: 94 }, { x: 58, y: 92 }, { x: 76, y: 92 },
+      { x: 18, y: 66 }, { x: 44, y: 74 }, { x: 66, y: 64 },
+      { x: 86, y: 74 }, { x: 34, y: 96 }, { x: 56, y: 94 }, { x: 76, y: 96 },
     ],
   };
 
@@ -91,7 +91,7 @@
     name: '챗지피티',
     color: 'mint',
     room: 'meeting',
-    pos: { x: 78, y: 74 },
+    pos: { x: 74, y: 92 },
     status: '무엇이든 물어보세요 🤖',
   };
   try {
@@ -157,7 +157,8 @@
       ? `<path d="M${g.mouth[0] - 4.5} ${g.mouth[1]} q4.5 4.4 9 0" fill="none" stroke="#6A5372" stroke-width="2.4" stroke-linecap="round" opacity=".45"/>`
       : '';
     return `<svg class="glyph" viewBox="0 0 100 100" aria-hidden="true">
-      <g fill="none" stroke="${c.main}" stroke-width="18" stroke-linecap="round" stroke-linejoin="round">${paths}</g>
+      <g fill="none" stroke="#FFFCF4" stroke-width="25.5" stroke-linecap="round" stroke-linejoin="round">${paths}</g>
+      <g fill="none" stroke="${c.main}" stroke-width="17" stroke-linecap="round" stroke-linejoin="round">${paths}</g>
       <ellipse cx="${g.eyes[0] - 8.5}" cy="${g.eyes[1] + 9.5}" rx="4.4" ry="2.9" fill="#F08098" opacity=".33"/>
       <ellipse cx="${g.eyes[2] + 8.5}" cy="${g.eyes[3] + 9.5}" rx="4.4" ry="2.9" fill="#F08098" opacity=".33"/>
       <g class="eyes" style="animation-delay:${delay}s">${eye(g.eyes[0], g.eyes[1])}${eye(g.eyes[2], g.eyes[3])}</g>
@@ -171,7 +172,7 @@
       <circle cx="50" cy="10" r="5.4" fill="#F7DE9A" stroke="#7CC5A6" stroke-width="2"/>
       <rect x="8" y="50" width="8" height="20" rx="4" fill="#98D6BC"/>
       <rect x="84" y="50" width="8" height="20" rx="4" fill="#98D6BC"/>
-      <rect x="17" y="26" width="66" height="62" rx="23" fill="#B4E6D1"/>
+      <rect x="17" y="26" width="66" height="62" rx="23" fill="#B4E6D1" stroke="#FFFCF4" stroke-width="5"/>
       <rect x="17" y="26" width="66" height="62" rx="23" fill="none" stroke="#7CC5A6" stroke-width="2" opacity=".45"/>
       <rect x="27" y="39" width="46" height="30" rx="13" fill="#F8FFFB" opacity=".92"/>
       <g class="eyes" style="animation-delay:0.6s">

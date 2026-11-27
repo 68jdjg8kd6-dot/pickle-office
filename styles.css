@@ -187,8 +187,8 @@ p { margin: 0; }
 /* 지도 */
 .map {
   display: grid;
-  grid-template-columns: 1.12fr .88fr;
-  grid-template-rows: 1.08fr .82fr;
+  grid-template-columns: 1.22fr .9fr;
+  grid-template-rows: 1fr 1fr;
   gap: 13px;
   height: var(--h);
 }
@@ -204,9 +204,9 @@ p { margin: 0; }
   transition: transform .3s cubic-bezier(.2, .8, .3, 1), box-shadow .3s;
   -webkit-user-select: none; user-select: none;
 }
-.room--work { grid-column: 1; grid-row: 1; }
+.room--work { grid-column: 1; grid-row: 1 / span 2; }
 .room--meeting { grid-column: 2; grid-row: 1; }
-.room--lounge { grid-column: 1 / span 2; grid-row: 2; }
+.room--lounge { grid-column: 2; grid-row: 2; }
 .room:hover { transform: translateY(-3px); box-shadow: 0 24px 38px -24px rgba(96, 74, 112, .9); }
 .room:active { transform: translateY(-1px) scale(.997); }
 .room:focus-visible { outline: 3px solid var(--lilac-2); outline-offset: 3px; }
@@ -334,7 +334,7 @@ p { margin: 0; }
 .lamp::after { content: ''; position: absolute; left: 50%; top: 12px; width: 1.5px; height: 20px; background: #C6AE8E; transform: translateX(-50%); }
 
 /* 가구 */
-.desk { position: absolute; width: 30%; height: 32%; min-height: 40px; }
+.desk { position: absolute; width: 30%; max-width: 148px; height: 32%; min-height: 40px; }
 .desk::before {
   content: ''; position: absolute; left: 0; right: 0; bottom: 8px; height: 11px;
   border-radius: 5px;
@@ -349,14 +349,14 @@ p { margin: 0; }
 }
 .desk .mon {
   position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%);
-  width: 46%; aspect-ratio: 1.24;
+  width: 58%; max-width: 66px; aspect-ratio: 1.26;
   background: #5B4D67; border-radius: 5px 5px 3px 3px;
-  box-shadow: 0 2px 0 rgba(0, 0, 0, .07), inset 0 0 0 2px #FFFDF8;
+  box-shadow: 0 2px 0 rgba(0, 0, 0, .07), 0 0 0 2px #FFFDF8;
 }
 .desk .mon::after {
-  content: ''; position: absolute; inset: 3px; border-radius: 2px;
+  content: ''; position: absolute; inset: 5px; border-radius: 2px;
   background: linear-gradient(150deg, #DCD0F6, #C6EBDC 62%, #F8E7BC);
-  opacity: .92;
+  opacity: .95;
 }
 .desk .mon::before {
   content: ''; position: absolute; left: 50%; bottom: -4px; width: 8px; height: 4px;
@@ -381,8 +381,8 @@ p { margin: 0; }
 .rug {
   position: absolute; height: 26%; min-height: 22px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, .42);
-  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .35);
+  background: rgba(255, 255, 255, .45);
+  box-shadow: inset 0 0 0 3px rgba(255, 255, 255, .45), inset 0 0 0 9px rgba(255, 255, 255, .16);
 }
 
 .chair {
@@ -400,19 +400,25 @@ p { margin: 0; }
 }
 .table .cup { position: absolute; left: 50%; top: 38%; transform: translate(-50%, -50%); font-size: 10px; font-style: normal; }
 
-.sofa { position: absolute; height: 50%; }
+.sofa {
+  position: absolute; height: 46%; max-width: 170px;
+  border-radius: 13px 13px 11px 11px;
+  background: linear-gradient(180deg, #FDDCCE 0%, #F9C8B6 40%, #EDA48C 41%, #E49B83 100%);
+  box-shadow: 0 6px 0 -3px rgba(200, 130, 110, .18), 0 10px 14px -12px rgba(150, 90, 80, .9);
+}
 .sofa::before {
-  content: ''; position: absolute; left: 0; right: 0; top: 30%; bottom: 10%;
-  border-radius: 12px;
-  background: linear-gradient(#F9C6B4, #EDA890);
-  box-shadow: 0 5px 0 -2px rgba(200, 130, 110, .2), 0 8px 14px -10px rgba(150, 90, 80, .9);
+  content: ''; position: absolute; left: 5%; right: 5%; top: 7%; height: 33%;
+  border-radius: 9px 9px 7px 7px;
+  background: linear-gradient(#FEE2D6, #FBD2C3);
+  box-shadow: 0 2px 0 rgba(220, 160, 140, .25);
 }
 .sofa::after {
-  content: ''; position: absolute; left: 4%; right: 4%; top: 4%; height: 28%;
-  border-radius: 10px 10px 6px 6px;
-  background: #FDD6C7;
-  box-shadow: inset 0 -3px 0 rgba(230, 165, 145, .35);
+  content: ''; position: absolute; left: 50%; top: 9%; bottom: 12%; width: 2px;
+  margin-left: -1px; border-radius: 2px; background: rgba(200, 140, 120, .22);
 }
+.sofa .arm { position: absolute; top: 34%; bottom: 14%; width: 8%; background: rgba(233, 168, 148, .55); }
+.sofa .arm.l { left: 0; border-radius: 8px 2px 2px 8px; }
+.sofa .arm.r { right: 0; border-radius: 2px 8px 8px 2px; }
 
 .side-table {
   position: absolute; width: 30px; height: 26px; border-radius: 50%;
@@ -460,7 +466,7 @@ p { margin: 0; }
 
 .pickle {
   position: absolute;
-  width: var(--size, 56px);
+  width: var(--size, 62px);
   transform: translate(-50%, -100%);
   display: flex; flex-direction: column; align-items: center;
   cursor: pointer;
@@ -1000,7 +1006,7 @@ p { margin: 0; }
   }
   .room { height: 210px; grid-column: 1 !important; grid-row: auto !important; }
   .room--lounge { height: 220px; }
-  .pickle { --size: 46px; }
+  .pickle { --size: 50px; }
   .bubble { font-size: 10px; max-width: 112px; }
   .panel { height: 470px; }
   .notes { grid-template-columns: 1fr 1fr; }
@@ -1016,7 +1022,7 @@ p { margin: 0; }
   .room { height: 186px; }
   .room--lounge { height: 196px; }
   .room-tag em { display: none; }
-  .pickle { --size: 42px; }
+  .pickle { --size: 46px; }
   .room-tag { padding: 4px 9px 4px 7px; }
   .room-count { padding: 3px 8px; }
   .office-title .hint { display: none; }
