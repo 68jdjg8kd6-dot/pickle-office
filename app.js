@@ -1041,6 +1041,15 @@
     document.body.style.overflow = '';
   }
 
+  function switchTab(name) {
+    $$('.tab').forEach((t) => {
+      const on = t.dataset.tab === name;
+      t.classList.toggle('is-active', on);
+      t.setAttribute('aria-selected', String(on));
+    });
+    $$('.pane').forEach((p) => p.classList.toggle('is-active', p.dataset.pane === name));
+  }
+
   function openCard(p) {
     cardTarget = p;
     $('#cardHero').innerHTML = glyph(p.bot ? 'BOT' : p.consonant, p.color, {});
@@ -1227,10 +1236,7 @@
   function wire() {
     // 탭
     $$('.tab').forEach((tab) => {
-      tab.addEventListener('click', () => {
-        $$('.tab').forEach((t) => { t.classList.toggle('is-active', t === tab); t.setAttribute('aria-selected', String(t === tab)); });
-        $$('.pane').forEach((p) => p.classList.toggle('is-active', p.dataset.pane === tab.dataset.tab));
-      });
+      tab.addEventListener('click', () => switchTab(tab.dataset.tab));
     });
 
     // 방 이동
@@ -1324,9 +1330,8 @@
       const isBot = cardTarget.bot;
       const name = cardTarget.name;
       hideModal('#modalCard');
+      switchTab('chat');
       if (isBot) {
-        $$('.tab').forEach((t) => { t.classList.toggle('is-active', t.dataset.tab === 'chat'); t.setAttribute('aria-selected', String(t.dataset.tab === 'chat')); });
-        $$('.pane').forEach((p) => p.classList.toggle('is-active', p.dataset.pane === 'chat'));
         const input = $('#chatInput');
         input.value = '@챗지피티 ';
         input.focus();
@@ -1334,6 +1339,7 @@
         toast('챗지피티에게 물어보세요 🤖');
       } else {
         sendChat(`${name}님, 안녕하세요! 👋`);
+        toast(`${name}님에게 인사를 건넸어요 👋`);
       }
     });
     $('#cardMove').addEventListener('click', () => {
