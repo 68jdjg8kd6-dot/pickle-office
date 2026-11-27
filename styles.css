@@ -633,10 +633,11 @@ a { color: var(--rose-d); }
 .map-frame[data-focus] .pickle .bot-badge {
   font-size: 4.4px;
   padding: 0.5px 2px;
-  top: -3px;
+  top: auto;
+  bottom: -4px;
+  height: auto;
+  line-height: 1.2;
 }
-.map-frame[data-focus] .pickle .me-badge { right: -5px; }
-.map-frame[data-focus] .pickle .bot-badge { left: -5px; }
 
 /* ── 통계 ──────────────────────────────────────────────── */
 .stats {
