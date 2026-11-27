@@ -471,7 +471,7 @@ a { color: var(--rose-d); }
 .room-badge[data-room="meeting"] { left: 21%; top: 60%; }
 .room-badge[data-room="work"] { left: 51%; top: 47.5%; }
 .room-badge[data-room="lounge"] { left: 76.5%; top: 71%; }
-.map-frame[data-focus] .room-badges { opacity: 0; pointer-events: none; transition: opacity .2s ease; }
+.map-frame[data-focus] .room-badges { opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .2s ease; }
 
 .map-foot {
   display: flex;
@@ -615,9 +615,9 @@ a { color: var(--rose-d); }
 .map-frame[data-focus="meeting"] .room-spot[data-room="meeting"],
 .map-frame[data-focus="work"] .room-spot[data-room="work"],
 .map-frame[data-focus="lounge"] .room-spot[data-room="lounge"] { display: block; }
-.map-frame[data-focus] .pickle { width: 38px; }
-.map-frame[data-focus="work"] .pickle { width: 30px; }
-.map-frame[data-focus="lounge"] .pickle { width: 32px; }
+.map-frame[data-focus] .pickle { width: 26px; }
+.map-frame[data-focus="work"] .pickle { width: 20px; }
+.map-frame[data-focus="lounge"] .pickle { width: 22px; }
 .map-frame[data-focus] .pickle.is-me::before { display: none; }
 .map-frame[data-focus] .pickle .me-badge,
 .map-frame[data-focus] .pickle .bot-badge { bottom: -4px; }
@@ -631,8 +631,8 @@ a { color: var(--rose-d); }
 }
 .map-frame[data-focus] .pickle .me-badge,
 .map-frame[data-focus] .pickle .bot-badge {
-  font-size: 4.4px;
-  padding: 0.5px 2px;
+  font-size: 3.6px;
+  padding: 0.4px 1.6px;
   top: auto;
   bottom: -4px;
   height: auto;
