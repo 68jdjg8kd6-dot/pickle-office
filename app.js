@@ -358,6 +358,10 @@
       (isMe ? '<span class="me-badge">나</span>' : '') +
       (p.bot ? '<span class="bot-badge">🤖 AI</span>' : '');
     el.querySelector('.bubble').textContent = bubbleText;
+    const bx = p.pos ? p.pos.x : 50;
+    const bub = el.querySelector('.bubble');
+    if (bx > 62) { bub.style.setProperty('--bx', '-100%'); bub.style.setProperty('--tail', '88%'); }
+    else if (bx < 38) { bub.style.setProperty('--bx', '0%'); bub.style.setProperty('--tail', '12%'); }
 
     el.addEventListener('pointerdown', (e) => {
       e.stopPropagation();
