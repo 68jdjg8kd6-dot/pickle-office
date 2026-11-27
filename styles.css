@@ -605,10 +605,12 @@ a { color: var(--rose-d); }
   0%, 92%, 100% { transform: scaleY(1); }
   95% { transform: scaleY(.12); }
 }
-.map-frame[data-focus] .pickle { width: 34px; }
-.map-frame[data-focus="work"] .pickle { width: 28px; }
-.map-frame[data-focus="lounge"] .pickle { width: 30px; }
-.map-frame[data-focus] .pickle .bubble { max-width: 100px; }
+.map-frame[data-focus] .room-spot { display: none; }
+.map-frame[data-focus="meeting"] .room-spot[data-room="meeting"],
+.map-frame[data-focus="work"] .room-spot[data-room="work"],
+.map-frame[data-focus="lounge"] .room-spot[data-room="lounge"] { display: block; }
+.map-frame[data-focus] .pickle { width: 38px; }
+.map-frame[data-focus] .pickle .bubble { max-width: 110px; font-size: 9px; }
 
 /* ── 통계 ──────────────────────────────────────────────── */
 .stats {
