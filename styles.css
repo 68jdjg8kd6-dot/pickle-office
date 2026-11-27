@@ -437,6 +437,7 @@ a { color: var(--rose-d); }
   color: #4A3A32;
   white-space: nowrap;
   transition: transform .16s ease, box-shadow .16s ease, background .16s ease;
+  -webkit-backdrop-filter: blur(3px);
   backdrop-filter: blur(3px);
 }
 .room-badge i {
@@ -1156,6 +1157,7 @@ body[data-ai="openai"] .typing-dots i { background: #9CC7B4; }
   justify-content: center;
   padding: 12px;
   background: rgba(58, 44, 37, .32);
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
   animation: fadeIn .18s ease;
 }
