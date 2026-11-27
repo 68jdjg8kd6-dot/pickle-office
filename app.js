@@ -81,12 +81,12 @@
       { x: 86, y: 93 }, { x: 33, y: 97 }, { x: 60, y: 98 }, { x: 12, y: 92 },
     ],
     meeting: [
-      { x: 17, y: 88 }, { x: 40, y: 94 }, { x: 64, y: 88 },
-      { x: 85, y: 94 }, { x: 28, y: 98 }, { x: 76, y: 98 }, { x: 8, y: 96 },
+      { x: 27, y: 88 }, { x: 50, y: 94 }, { x: 71, y: 88 },
+      { x: 87, y: 93 }, { x: 38, y: 98 }, { x: 80, y: 98 }, { x: 20, y: 95 },
     ],
     lounge: [
-      { x: 20, y: 88 }, { x: 44, y: 94 }, { x: 66, y: 88 },
-      { x: 86, y: 93 }, { x: 32, y: 98 }, { x: 74, y: 98 }, { x: 8, y: 94 },
+      { x: 26, y: 88 }, { x: 49, y: 94 }, { x: 70, y: 88 },
+      { x: 86, y: 93 }, { x: 37, y: 98 }, { x: 78, y: 98 }, { x: 18, y: 94 },
     ],
   };
 
@@ -123,7 +123,7 @@
 
   /* AI 동료는 늘 대회의실에 있어요 */
   const BOT_ROOM = 'meeting';
-  const BOT_POS = { x: 66, y: 92 };
+  const BOT_POS = { x: 58, y: 92 };
   const DEFAULT_BOT_STATUS = '무엇이든 물어보세요';
   const botStatus = { gemini: DEFAULT_BOT_STATUS, openai: DEFAULT_BOT_STATUS };
   try {
