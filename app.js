@@ -92,7 +92,7 @@
     color: 'mint',
     room: 'meeting',
     pos: { x: 74, y: 92 },
-    status: '무엇이든 물어보세요 🤖',
+    status: '무엇이든 물어보세요',
   };
   try {
     const raw = localStorage.getItem(LS.bot);
@@ -147,6 +147,13 @@
       `<circle cx="${x + 1.1}" cy="${y - 1.2}" r="0.9" fill="#FFFFFF" opacity=".95"/>`;
   }
 
+  function feet(color) {
+    return `<g class="feet">` +
+      `<ellipse cx="36" cy="93" rx="7" ry="4.6" fill="${color}"/>` +
+      `<ellipse cx="64" cy="93" rx="7" ry="4.6" fill="${color}"/>` +
+      `</g>`;
+  }
+
   function glyph(consonant, colorId, opts = {}) {
     if (consonant === 'BOT') return botSVG();
     const g = GLYPHS[consonant] || GLYPHS['ㅇ'];
@@ -159,6 +166,7 @@
     return `<svg class="glyph" viewBox="0 0 100 100" aria-hidden="true">
       <g fill="none" stroke="#FFFCF4" stroke-width="25.5" stroke-linecap="round" stroke-linejoin="round">${paths}</g>
       <g fill="none" stroke="${c.main}" stroke-width="17" stroke-linecap="round" stroke-linejoin="round">${paths}</g>
+      ${feet(c.deep)}
       <ellipse cx="${g.eyes[0] - 8.5}" cy="${g.eyes[1] + 9.5}" rx="4.4" ry="2.9" fill="#F08098" opacity=".33"/>
       <ellipse cx="${g.eyes[2] + 8.5}" cy="${g.eyes[3] + 9.5}" rx="4.4" ry="2.9" fill="#F08098" opacity=".33"/>
       <g class="eyes" style="animation-delay:${delay}s">${eye(g.eyes[0], g.eyes[1])}${eye(g.eyes[2], g.eyes[3])}</g>
