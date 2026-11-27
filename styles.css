@@ -616,20 +616,15 @@ a { color: var(--rose-d); }
 .map-frame[data-focus="meeting"] .room-spot[data-room="meeting"],
 .map-frame[data-focus="work"] .room-spot[data-room="work"],
 .map-frame[data-focus="lounge"] .room-spot[data-room="lounge"] { display: block; }
-.map-frame[data-focus] .pickle { width: 26px; }
-.map-frame[data-focus="work"] .pickle { width: 20px; }
-.map-frame[data-focus="lounge"] .pickle { width: 22px; }
+.map-frame[data-focus] .pickle { width: 30px; }
+.map-frame[data-focus="work"] .pickle { width: 24px; }
+.map-frame[data-focus="lounge"] .pickle { width: 26px; }
+.map-frame[data-focus] .pickle .bubble { display: none; }
 .map-frame[data-focus] .pickle.is-me::before { display: none; }
 .map-frame[data-focus] .pickle .me-badge,
 .map-frame[data-focus] .pickle .bot-badge { bottom: -4px; }
 /* 방 화면은 확대되어 있어서, 안쪽 글자는 그만큼 작게 잡아요 */
-.map-frame[data-focus] .pickle .bubble {
-  max-width: 58px;
-  font-size: 5px;
-  padding: 2px 4px;
-  line-height: 1.35;
-  border-radius: 5px;
-}
+
 .map-frame[data-focus] .pickle .me-badge,
 .map-frame[data-focus] .pickle .bot-badge {
   font-size: 3.6px;
