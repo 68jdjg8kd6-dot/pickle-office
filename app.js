@@ -36,9 +36,9 @@
   const COLOR_IDS = ['lilac', 'mint', 'peach', 'butter', 'sky', 'rose', 'sage', 'cocoa'];
 
   const ROOMS = {
-    work: { name: '작업실', emoji: '💻', desc: '조용히 집중하는 곳' },
-    meeting: { name: '회의실', emoji: '🗣️', desc: '머리 맞대는 곳' },
-    lounge: { name: '카페', emoji: '☕', desc: '잠깐 쉬어가는 곳' },
+    work: { name: '지휘실', emoji: '🖥️', desc: '지시를 내리고 일을 맡기는 곳이에요.' },
+    meeting: { name: '대회의실', emoji: '🗣️', desc: '머리 맞대고 이야기하는 곳이에요.' },
+    lounge: { name: '라운지', emoji: '☕', desc: '잠깐 쉬어가는 곳이에요.' },
   };
   const ROOM_IDS = ['work', 'meeting', 'lounge'];
   const CONSONANTS = ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
@@ -74,19 +74,19 @@
     },
   };
 
-  /* 방마다 피클이 서는 자리 (바닥 기준 %, 아래에서 위로) */
+  /* 방마다 피클이 서는 자리 (각 방 바닥 기준 %, 아래에서 위로) */
   const SLOTS = {
     work: [
-      { x: 14, y: 58 }, { x: 36, y: 50 }, { x: 58, y: 58 },
-      { x: 80, y: 50 }, { x: 24, y: 88 }, { x: 50, y: 84 }, { x: 74, y: 90 },
+      { x: 22, y: 84 }, { x: 46, y: 90 }, { x: 70, y: 85 },
+      { x: 86, y: 93 }, { x: 33, y: 97 }, { x: 60, y: 98 }, { x: 12, y: 92 },
     ],
     meeting: [
-      { x: 20, y: 66 }, { x: 46, y: 58 }, { x: 78, y: 66 },
-      { x: 30, y: 94 }, { x: 60, y: 94 }, { x: 88, y: 88 },
+      { x: 17, y: 88 }, { x: 40, y: 94 }, { x: 64, y: 88 },
+      { x: 85, y: 94 }, { x: 28, y: 98 }, { x: 76, y: 98 }, { x: 8, y: 96 },
     ],
     lounge: [
-      { x: 18, y: 66 }, { x: 44, y: 74 }, { x: 66, y: 64 },
-      { x: 86, y: 74 }, { x: 34, y: 96 }, { x: 56, y: 94 }, { x: 76, y: 96 },
+      { x: 20, y: 88 }, { x: 44, y: 94 }, { x: 66, y: 88 },
+      { x: 86, y: 93 }, { x: 32, y: 98 }, { x: 74, y: 98 }, { x: 8, y: 94 },
     ],
   };
 
@@ -121,9 +121,9 @@
   let thinking = false;
   let booted = false;
 
-  /* AI 동료는 늘 회의실에 있어요 */
+  /* AI 동료는 늘 대회의실에 있어요 */
   const BOT_ROOM = 'meeting';
-  const BOT_POS = { x: 74, y: 92 };
+  const BOT_POS = { x: 66, y: 92 };
   const DEFAULT_BOT_STATUS = '무엇이든 물어보세요';
   const botStatus = { gemini: DEFAULT_BOT_STATUS, openai: DEFAULT_BOT_STATUS };
   try {
@@ -321,9 +321,9 @@
     const now = Date.now();
     const ai = aiBot();
     const pickles = {
-      s2: { id: 's2', name: '2호', consonant: 'ㄱ', color: 'mint', room: 'meeting', pos: { x: 22, y: 66 }, status: '회의 자료 정리 중 📊', sample: true, updatedAt: now - 60000 },
-      s3: { id: 's3', name: '3호', consonant: 'ㅁ', color: 'peach', room: 'lounge', pos: { x: 24, y: 72 }, status: '커피 한 잔 하고 왔어요 ☕', sample: true, updatedAt: now - 90000 },
-      s5: { id: 's5', name: '5호', consonant: 'ㅅ', color: 'butter', room: 'work', pos: { x: 72, y: 58 }, status: '이메일 답장 쓰는 중 ✉️', sample: true, updatedAt: now - 120000 },
+      s2: { id: 's2', name: '2호', consonant: 'ㄱ', color: 'mint', room: 'meeting', pos: { x: 24, y: 90 }, status: '회의 자료 정리 중 📊', sample: true, updatedAt: now - 60000 },
+      s3: { id: 's3', name: '3호', consonant: 'ㅁ', color: 'peach', room: 'lounge', pos: { x: 30, y: 92 }, status: '커피 한 잔 하고 왔어요 ☕', sample: true, updatedAt: now - 90000 },
+      s5: { id: 's5', name: '5호', consonant: 'ㅅ', color: 'butter', room: 'work', pos: { x: 68, y: 88 }, status: '이메일 답장 쓰는 중 ✉️', sample: true, updatedAt: now - 120000 },
     };
     const messages = [
       { id: 'm1', authorId: 's2', authorName: '2호', authorColor: 'mint', authorConsonant: 'ㄱ', text: '다들 좋은 하루 보내고 있죠? 오늘 회의는 3시에 어때요?', ts: now - 1000 * 60 * 52 },
@@ -438,18 +438,31 @@
     renderPeople();
     renderStats();
     renderFoot();
+    renderAI();
   }
 
   function renderHeader() {
     const mine = state.pickles[me.id];
-    $('#meAvatar').innerHTML = glyph(me.consonant, me.color, {});
-    $('#meName').textContent = me.name;
-    $('#meStatus').textContent = (mine && mine.status) || '상태를 남겨보세요';
+    const av = $('#meAvatar');
+    if (av) av.innerHTML = glyph(me.consonant, me.color, {});
+    const nm = $('#meName');
+    if (nm) nm.textContent = me.name;
+    const stt = $('#meStatus');
+    if (stt) stt.textContent = (mine && mine.status) || '상태를 남겨보세요';
     const st = $('#statusInput');
-    if (document.activeElement !== st) st.value = (mine && mine.status) || '';
-    $('#connPill').dataset.mode = mode;
-    $('#connPill').querySelector('b').textContent = mode === 'firebase' ? '실시간 연결' : '로컬 데모';
-    $('#greeting').textContent = greetingText();
+    if (st && document.activeElement !== st) st.value = (mine && mine.status) || '';
+    const pill = $('#connPill');
+    if (pill) {
+      pill.dataset.mode = mode;
+      pill.title = mode === 'firebase'
+        ? '실시간 DB에 연결되어 있어요 — 누르면 설정이 열려요'
+        : '로컬 데모 모드 — 이 브라우저에만 저장돼요 (누르면 설정)';
+      const b = pill.querySelector('b');
+      if (b) b.textContent = '비서 가동 중';
+    }
+    const g = $('#greeting');
+    if (g) g.textContent = greetingText();
+    renderDate();
   }
 
   function greetingText() {
@@ -515,14 +528,22 @@
         .sort((a, b) => (a.id === me.id ? -1 : b.id === me.id ? 1 : String(a.name).localeCompare(String(b.name))));
       list.forEach((p) => layer.appendChild(pickleEl(p, p.id === me.id)));
       if (roomId === BOT_ROOM) layer.appendChild(pickleEl(aiBot(), false));
+    });
+    syncRoomBadges();
+    renderRoomMembers();
+  }
 
-      const count = layer.querySelectorAll('.pickle').length;
-      const chip = document.querySelector(`.room[data-room="${roomId}"] .room-count`);
-      if (chip) chip.textContent = String(count);
-      const room = document.querySelector(`.room[data-room="${roomId}"]`);
-      if (room) {
-        const mine = state.pickles[me.id];
-        room.classList.toggle('is-mine', !!mine && mine.room === roomId);
+  /* 방 배지 숫자 · 내 피클이 있는 방 표시 */
+  function syncRoomBadges() {
+    const mine = state.pickles[me.id];
+    ROOM_IDS.forEach((roomId) => {
+      const n = Object.values(state.pickles).filter((p) => p.room === roomId).length + (roomId === BOT_ROOM ? 1 : 0);
+      const chip = document.querySelector(`[data-badge-count="${roomId}"]`);
+      if (chip) chip.textContent = String(n);
+      const badge = document.querySelector(`.room-badge[data-room="${roomId}"]`);
+      if (badge) {
+        badge.classList.toggle('is-active', !!mine && mine.room === roomId);
+        badge.setAttribute('aria-label', `${ROOMS[roomId].name}로 이동 (${n}명)`);
       }
     });
   }
@@ -667,6 +688,9 @@
     if (!wrap) return;
     wrap.innerHTML = '';
 
+    const cnt = $('#peopleCount');
+    if (cnt) cnt.textContent = Object.keys(state.pickles).length + '명 · AI 2명';
+
     const rows = [];
     rows.push(botEl());
 
@@ -764,9 +788,8 @@
 
   function startDrag(e, p, el) {
     if (e.button != null && e.button !== 0) return;
-    const roomEl = document.querySelector(`.room[data-room="${p.room}"]`);
-    if (!roomEl) return;
-    const floor = roomEl.querySelector('.floor');
+    const floor = document.querySelector(`.room-spot[data-room="${p.room}"]`);
+    if (!floor) return;
     const rect = floor.getBoundingClientRect();
     const sx = e.clientX;
     const sy = e.clientY;
@@ -778,7 +801,7 @@
       if (!moved) { moved = true; el.classList.add('is-dragging'); }
       const x = ((ev.clientX - rect.left) / rect.width) * 100;
       const y = ((ev.clientY - rect.top) / rect.height) * 100;
-      p.pos = { x: clamp(x, 7, 93), y: clamp(y, 26, 97) };
+      p.pos = { x: clamp(x, 6, 94), y: clamp(y, 8, 98) };
       if (!raf) {
         raf = requestAnimationFrame(() => {
           raf = 0;
@@ -1183,6 +1206,11 @@
     }
     const hint = $('#noteHint');
     if (hint) hint.innerHTML = `💡 <b>@${escapeHTML(info.name)}</b> 라고 부르면 AI 동료가 답을 남겨요`;
+    $$('.mention-chip').forEach((ch) => {
+      ch.textContent = '@' + info.name;
+      ch.dataset.mention = p;
+      ch.title = info.name + ' 부르기';
+    });
     const ci = $('#chatInput');
     if (ci) ci.placeholder = aiToggleOn ? info.name + '에게 물어보기 — 그냥 적으면 돼요' : '다정한 한마디를 남겨보세요';
     const ni = $('#noteInput');
@@ -1363,13 +1391,11 @@
     document.body.style.overflow = '';
   }
 
+  /* 예전 탭 이름을 새 화면으로 이어줘요 */
   function switchTab(name) {
-    $$('.tab').forEach((t) => {
-      const on = t.dataset.tab === name;
-      t.classList.toggle('is-active', on);
-      t.setAttribute('aria-selected', String(on));
-    });
-    $$('.pane').forEach((p) => p.classList.toggle('is-active', p.dataset.pane === name));
+    if (name === 'board') setView('notes');
+    else if (name === 'people') setView('people');
+    else setView(view === 'room' ? 'room' : 'map');
   }
 
   function openCard(p) {
@@ -1555,23 +1581,198 @@
     const timer = setTimeout(remove, action ? 6000 : 2800);
   }
 
-  /* ---------------- 이벤트 연결 ---------------- */
-  function wire() {
-    // 탭
-    $$('.tab').forEach((tab) => {
-      tab.addEventListener('click', () => switchTab(tab.dataset.tab));
+  /* ============================================================
+     화면 전환 — 오피스 맵 · 대회의실/지휘실/라운지 · 비서현황 · 메모
+     (지도 카드와 대화 카드는 한 벌만 만들어 화면 사이로 옮겨요)
+     ============================================================ */
+  let view = 'map';
+  let currentRoom = 'meeting';
+
+  function mountComponents() {
+    const tmap = document.getElementById('tplMap');
+    const tchat = document.getElementById('tplChat');
+    const mapSlot = document.querySelector('.view[data-panel="map"] [data-slot="map"]');
+    const chatSlot = document.querySelector('.view[data-panel="map"] [data-slot="chat-map"]');
+    if (tmap && mapSlot && !document.getElementById('mapStage')) mapSlot.appendChild(tmap.content.cloneNode(true));
+    if (tchat && chatSlot && !document.getElementById('chatCard')) chatSlot.appendChild(tchat.content.cloneNode(true));
+  }
+
+  function setView(name, roomId) {
+    const panel = name === 'room' ? document.querySelector('.view[data-panel="room"]') : document.querySelector(`.view[data-panel="${name}"]`);
+    if (!panel) return;
+    const mapCard = $('#mapCard');
+    const chatCard = $('#chatCard');
+    const frame = $('.map-frame');
+
+    if (name === 'room') {
+      currentRoom = ROOMS[roomId] ? roomId : currentRoom;
+      view = 'room';
+      if (frame) frame.dataset.focus = currentRoom;
+      const rt = $('#roomTitle');
+      if (rt) rt.textContent = ROOMS[currentRoom].name;
+      const rs = $('#roomSub');
+      if (rs) rs.textContent = ROOMS[currentRoom].desc;
+      const mslot = panel.querySelector('[data-slot="room"]');
+      if (mapCard && mslot && mapCard.parentElement !== mslot) mslot.appendChild(mapCard);
+      const cslot = panel.querySelector('[data-slot="chat-room"]');
+      if (chatCard && cslot && chatCard.parentElement !== cslot) cslot.appendChild(chatCard);
+    } else {
+      view = name;
+      if (frame) delete frame.dataset.focus;
+      if (name === 'map') {
+        const mslot = panel.querySelector('[data-slot="map"]');
+        if (mapCard && mslot && mapCard.parentElement !== mslot) mslot.appendChild(mapCard);
+        const cslot = panel.querySelector('[data-slot="chat-map"]');
+        if (chatCard && cslot && chatCard.parentElement !== cslot) cslot.appendChild(chatCard);
+      }
+    }
+
+    $$('.view').forEach((v) => v.classList.toggle('is-active', v === panel));
+    syncNav();
+    renderRoomMembers();
+    syncRoomBadges();
+    renderMessages();
+    renderNotes();
+    renderPeople();
+    try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) { window.scrollTo(0, 0); }
+  }
+
+  function syncNav() {
+    $$('.nav-pill').forEach((b) => {
+      const nav = b.dataset.nav;
+      const on = nav === view && (nav !== 'room' || b.dataset.room === currentRoom);
+      b.classList.toggle('is-active', on);
+      b.setAttribute('aria-current', on ? 'page' : 'false');
+    });
+  }
+
+  /* 지금 이 방에 있는 비서들 */
+  function renderRoomMembers() {
+    const wrap = $('#roomMembers');
+    if (!wrap) return;
+    if (view !== 'room') { wrap.hidden = true; wrap.innerHTML = ''; return; }
+    wrap.hidden = false;
+    wrap.innerHTML = '';
+    const list = Object.values(state.pickles)
+      .filter((p) => p.room === currentRoom)
+      .sort((a, b) => (a.id === me.id ? -1 : b.id === me.id ? 1 : String(a.name).localeCompare(String(b.name))));
+    const items = list.slice();
+    if (currentRoom === BOT_ROOM) items.push(aiBot());
+    if (!items.length) {
+      const none = document.createElement('span');
+      none.className = 'none';
+      none.textContent = '아직 아무도 없어요. 내 피클을 불러볼까요?';
+      wrap.appendChild(none);
+    }
+    items.forEach((p) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'member-chip' + (p.id === me.id ? ' is-me' : '');
+      b.innerHTML = `<span class="av">${glyph(p.bot ? 'BOT' : p.consonant, p.color, { provider: p.bot ? botProviderOf(p) : undefined })}</span>` +
+        `<span>${escapeHTML(p.name)}</span>` +
+        (p.id === me.id ? '<small>나</small>' : '') +
+        (!p.bot && p.status ? `<small>${escapeHTML(p.status)}</small>` : '');
+      b.title = p.name + (p.status ? ' — ' + p.status : '');
+      b.addEventListener('click', () => openCard(p));
+      wrap.appendChild(b);
     });
 
-    // 방 이동
-    $$('.room').forEach((room) => {
-      room.addEventListener('click', (e) => {
-        if (e.target.closest('.pickle')) return;
-        moveTo(room.dataset.room);
-      });
-      room.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); moveTo(room.dataset.room); }
+    const btn = $('#btnCallMe');
+    if (btn) {
+      const mine = state.pickles[me.id];
+      const here = !!mine && mine.room === currentRoom;
+      btn.textContent = here ? '✅ 지금 이 방에 있어요' : '🚪 여기로 내 피클 부르기';
+      btn.disabled = here;
+    }
+  }
+
+  /* AI 동료 카드 (제미나이 · 챗지피티) */
+  function renderAI() {
+    const wrap = $('#aiCards');
+    if (!wrap) return;
+    wrap.innerHTML = '';
+    ['gemini', 'openai'].forEach((id) => {
+      const info = AI_PROVIDERS[id];
+      const cur = getProvider() === id;
+      const keyed = !!getKey(id);
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'ai-card' + (cur ? ' is-current' : '');
+      b.innerHTML =
+        `<span class="aav">${botSVG(id)}</span>` +
+        `<span class="ai-body">` +
+        `<span class="ai-name">${info.emoji} ${escapeHTML(info.name)} <span class="sample">AI</span></span>` +
+        `<span class="ai-sub">${escapeHTML(info.label)} · ${keyed ? escapeHTML(getModel(id)) : '키를 넣으면 대답해요'}</span>` +
+        `</span>` +
+        `<span class="ai-tag ${keyed ? 'ok' : ''}">${cur ? (keyed ? '사용 중' : '키 필요') : (keyed ? '준비됨' : '키 필요')}</span>`;
+      b.title = info.label + (keyed ? ' — 연결됨' : ' — API 키 필요') + ' · 누르면 설정';
+      b.addEventListener('click', () => { setProvider(id); openAI(); });
+      wrap.appendChild(b);
+    });
+  }
+
+  function renderDate() {
+    const el = $('#datePill');
+    if (!el) return;
+    const d = new Date();
+    const days = ['일', '월', '화', '수', '목', '금', '토'];
+    el.textContent = `${d.getMonth() + 1}월 ${d.getDate()}일 (${days[d.getDay()]}) ` +
+      `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
+  }
+
+  function ensureChatVisible() {
+    if (view === 'people' || view === 'notes') setView('map');
+  }
+
+  function focusChat() {
+    const input = $('#chatInput');
+    if (!input) return;
+    setTimeout(() => {
+      try { input.focus({ preventScroll: true }); } catch (e) { input.focus(); }
+    }, 340);
+  }
+
+  /* ---------------- 이벤트 연결 ---------------- */
+  function wire() {
+    // 메뉴 (오피스 맵 · 대회의실 · 지휘실 · 비서현황 · AI 연결 · 메모)
+    $$('.nav-pill').forEach((b) => {
+      b.addEventListener('click', () => {
+        if (b.dataset.nav === 'ai') { openAI(); return; }
+        setView(b.dataset.nav, b.dataset.room);
       });
     });
+
+    // 지도 위의 방 배지 · 범례 → 그 공간으로 이동
+    const mapCard = $('#mapCard');
+    if (mapCard) {
+      mapCard.addEventListener('click', (e) => {
+        const spot = e.target.closest('.room-badge, .legend button');
+        if (!spot || !spot.dataset.room || !ROOMS[spot.dataset.room]) return;
+        moveTo(spot.dataset.room);
+        setView('room', spot.dataset.room);
+      });
+    }
+
+    const cmdBtn = $('#btnCommand');
+    if (cmdBtn) cmdBtn.addEventListener('click', () => {
+      moveTo('work');
+      setView('room', 'work');
+      focusChat();
+    });
+    const callBtn = $('#btnCallMe');
+    if (callBtn) callBtn.addEventListener('click', () => { moveTo(currentRoom); });
+    const custBtn = $('#btnCustomize');
+    if (custBtn) custBtn.addEventListener('click', () => openMe(false));
+
+    // 대화창의 @멘션 칩 — 지금 고른 AI 이름을 넣어줘요
+    $$('.mention-chip').forEach((ch) => ch.addEventListener('click', () => {
+      const input = $('#chatInput');
+      if (!input) return;
+      const info = aiInfo(getProvider());
+      input.value = '@' + info.name + ' ' + input.value.replace(/^@[^\s]*\s*/, '');
+      input.focus();
+      try { input.setSelectionRange(input.value.length, input.value.length); } catch (e) { /* 무시 */ }
+    }));
 
     // 상태
     const st = $('#statusInput');
@@ -1654,7 +1855,7 @@
       const isBot = cardTarget.bot;
       const name = cardTarget.name;
       hideModal('#modalCard');
-      switchTab('chat');
+      ensureChatVisible();
       if (isBot) {
         const input = $('#chatInput');
         const info = aiInfo(getProvider());
@@ -1750,7 +1951,9 @@
       try { applyRemote(JSON.parse(e.newValue)); } catch (err) { /* 무시 */ }
     });
 
+    mountComponents();
     wire();
+    setView('map');
     applyAiLabels();
     renderAll();
 
@@ -1770,8 +1973,9 @@
       setTimeout(() => el.classList.remove('show-bubble'), 3600);
     }, 6500);
 
-    // 시간에 따라 인사말 갱신
+    // 시간에 따라 인사말 · 날짜 갱신
     setInterval(renderHeader, 60000);
+    setInterval(renderDate, 30000);
 
     // 저장된 Firebase 설정이 있으면 조용히 연결
     const cfg = readConfig();
