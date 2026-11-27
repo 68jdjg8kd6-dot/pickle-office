@@ -403,9 +403,9 @@ a { color: var(--rose-d); }
   user-select: none;
   -webkit-user-drag: none;
 }
-.map-frame[data-focus="meeting"] .map-stage { transform: scale(2); transform-origin: 4% 73%; }
-.map-frame[data-focus="work"] .map-stage { transform: scale(2); transform-origin: 47% 43%; }
-.map-frame[data-focus="lounge"] .map-stage { transform: scale(2); transform-origin: 88% 74%; }
+.map-frame[data-focus="meeting"] .map-stage { transform: scale(2); transform-origin: 3% 73%; }
+.map-frame[data-focus="work"] .map-stage { transform: scale(2.6); transform-origin: 44% 36%; }
+.map-frame[data-focus="lounge"] .map-stage { transform: scale(2.4); transform-origin: 89% 72%; }
 
 /* 공간마다 피클이 서는 자리 */
 .room-spot { position: absolute; pointer-events: none; }
@@ -606,6 +606,9 @@ a { color: var(--rose-d); }
   95% { transform: scaleY(.12); }
 }
 .map-frame[data-focus] .pickle { width: 34px; }
+.map-frame[data-focus="work"] .pickle { width: 28px; }
+.map-frame[data-focus="lounge"] .pickle { width: 30px; }
+.map-frame[data-focus] .pickle .bubble { max-width: 100px; }
 
 /* ── 통계 ──────────────────────────────────────────────── */
 .stats {
