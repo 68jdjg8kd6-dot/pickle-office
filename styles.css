@@ -573,8 +573,11 @@ a { color: var(--rose-d); }
 }
 .pickle.is-me .me-badge {
   position: absolute;
-  top: -6px;
-  right: -9px;
+  top: auto;
+  bottom: -7px;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
   font-size: 8.5px;
   font-weight: 800;
   color: #fff;
@@ -586,8 +589,11 @@ a { color: var(--rose-d); }
 }
 .pickle .bot-badge {
   position: absolute;
-  top: -6px;
-  left: -8px;
+  top: auto;
+  bottom: -7px;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
   font-size: 8px;
   font-weight: 800;
   color: #4E6C8E;
@@ -612,7 +618,9 @@ a { color: var(--rose-d); }
 .map-frame[data-focus] .pickle { width: 38px; }
 .map-frame[data-focus="work"] .pickle { width: 30px; }
 .map-frame[data-focus="lounge"] .pickle { width: 32px; }
-.map-frame[data-focus] .pickle.is-me::before { width: 15px; height: 15px; bottom: 1px; }
+.map-frame[data-focus] .pickle.is-me::before { display: none; }
+.map-frame[data-focus] .pickle .me-badge,
+.map-frame[data-focus] .pickle .bot-badge { bottom: -4px; }
 /* 방 화면은 확대되어 있어서, 안쪽 글자는 그만큼 작게 잡아요 */
 .map-frame[data-focus] .pickle .bubble {
   max-width: 58px;
