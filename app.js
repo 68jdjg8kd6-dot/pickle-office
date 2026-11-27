@@ -361,7 +361,7 @@
       .filter((p) => p.room === roomId && p.id !== exceptId && p.pos)
       .map((p) => p.pos);
     for (const slot of list) {
-      if (!used.some((u) => Math.hypot(u.x - slot.x, u.y - slot.y) < 14)) return { x: slot.x, y: slot.y };
+      if (!used.some((u) => Math.hypot(u.x - slot.x, u.y - slot.y) < 22)) return { x: slot.x, y: slot.y };
     }
     const base = list[Math.floor(Math.random() * list.length)];
     return { x: clamp(base.x + (Math.random() * 10 - 5), 10, 90), y: clamp(base.y + (Math.random() * 8 - 4), 30, 95) };
