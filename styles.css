@@ -739,7 +739,7 @@ p { margin: 0; }
   border-radius: 13px;
   padding: 15px 11px 9px;
   box-shadow: 0 8px 16px -13px rgba(90, 70, 105, .95);
-  animation: popIn .35s cubic-bezier(.2, 1.1, .4, 1) both;
+  animation: noteIn .35s cubic-bezier(.2, 1.1, .4, 1) backwards;
   display: flex; flex-direction: column; gap: 7px;
   min-height: 84px;
 }
@@ -991,6 +991,10 @@ p { margin: 0; }
 @keyframes popIn {
   0% { opacity: 0; transform: translate(-50%, -100%) scale(.7); }
   100% { opacity: 1; transform: translate(-50%, -100%) scale(1); }
+}
+@keyframes noteIn {
+  0% { opacity: 0; transform: translateY(8px) scale(.96); }
+  100% { opacity: 1; transform: none; }
 }
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(6px); }

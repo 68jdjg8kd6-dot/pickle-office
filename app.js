@@ -623,7 +623,7 @@
     syncPickle(p);
     renderOffice();
     renderPeople();
-    if (!opts.silent) toast(`${ROOMS[roomId].name}으로 이동했어요 ${ROOMS[roomId].emoji}`);
+    if (!opts.silent) toast(`${ROOMS[roomId].name}로 이동했어요 ${ROOMS[roomId].emoji}`);
   }
 
   function startDrag(e, p, el) {
@@ -880,7 +880,7 @@
     } catch (e) {
       clearTimeout(timer);
       if (e && e.name === 'AbortError') throw new Error('응답이 너무 늦어요');
-      throw new Error('네트워크를 확인해 주세요');
+      throw new Error('키가 올바른지, 인터넷이 연결되어 있는지 확인해 주세요');
     }
     clearTimeout(timer);
     const data = await res.json().catch(() => null);
